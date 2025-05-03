@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom"
 import { Search } from "lucide-react"
 import { getCategoryBySlug, getPostsByCategory, type BlogPost } from "../data/mockData"
 import { Button } from "../components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../components/ui/card"
+import { Card } from "../components/ui/card"
 import { Input } from "../components/ui/input"
 import {
   Pagination,
@@ -100,7 +100,7 @@ const SpecificCategory = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 w-[85%] mx-auto">
             {currentPosts.map((post) => (
               <Link to={`/blog/${post.slug}`} key={post.id}>
-                <Card className="h-full transition-all hover:shadow-md border-0 shadow-sm overflow-hidden">
+                <Card className="h-full transition-all hover:shadow-md border shadow-sm overflow-hidden">
                   <div className="aspect-video w-full overflow-hidden">
                     <img
                       src={post.coverImage || "/placeholder.svg"}
@@ -108,24 +108,22 @@ const SpecificCategory = () => {
                       className="h-full w-full object-cover transition-transform hover:scale-105"
                     />
                   </div>
-                  <CardHeader className="p-4">
+                  <div className="p-4">
                     <div className="text-sm text-gray-500 mb-2">{formatDate(post.date)}</div>
-                    <CardTitle className="text-lg line-clamp-2">{post.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4 pt-0">
-                    <p className="text-gray-500 line-clamp-2">{post.excerpt}</p>
-                  </CardContent>
-                  <CardFooter className="p-4 pt-0 flex justify-between">
-                    <div className="flex items-center text-sm text-gray-500">
-                      <img
-                        src={post.author.avatar || "/placeholder.svg"}
-                        alt={post.author.name}
-                        className="h-6 w-6 rounded-full mr-2"
-                      />
-                      {post.author.name}
+                    <h3 className="text-lg font-bold mb-2 line-clamp-2">{post.title}</h3>
+                    <p className="text-gray-500 line-clamp-2 mb-4">{post.excerpt}</p>
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center text-sm text-gray-500">
+                        <img
+                          src={post.author.avatar || "/placeholder.svg"}
+                          alt={post.author.name}
+                          className="h-6 w-6 rounded-full mr-2"
+                        />
+                        {post.author.name}
+                      </div>
+                      <div className="text-sm text-gray-500">{post.views} views</div>
                     </div>
-                    <div className="text-sm text-gray-500">{post.views} views</div>
-                  </CardFooter>
+                  </div>
                 </Card>
               </Link>
             ))}

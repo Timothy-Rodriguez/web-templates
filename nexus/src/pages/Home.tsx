@@ -2,11 +2,12 @@
 
 import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
-import { ArrowRight, Clock, Sparkles, ChevronRight, ChevronLeft } from "lucide-react"
+import { ArrowRight, Clock, Sparkles, ChevronRight, ChevronLeft } from 'lucide-react'
 import { Button } from "../components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../components/ui/card"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../components/ui/carousel"
-import { categories, getTrendingPosts, getRecentPosts, getNewPosts, type BlogPost } from "../data/mockData"
+import { categories, getTrendingPosts, getRecentPosts, getNewPosts,  type BlogPost } from "../data/mockData"
+// import { motion  getRecentPosts, getNewPosts, type BlogPost } from "../data/mockData"
 import { motion } from "framer-motion"
 
 const Home = () => {
@@ -143,7 +144,7 @@ const Home = () => {
             {categories.map((category) => (
               <CarouselItem key={category.id} className="md:basis-1/2 lg:basis-1/3">
                 <Link to={`/category/${category.slug}`}>
-                  <Card className="h-full transition-all hover:shadow-lg overflow-hidden group border-0 shadow-sm">
+                  <Card className="h-full transition-all hover:shadow-lg overflow-hidden group border shadow-sm">
                     <div className="aspect-video w-full overflow-hidden">
                       <img
                         src={category.image || "/placeholder.svg"}
@@ -151,15 +152,10 @@ const Home = () => {
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
                     </div>
-                    <CardContent className="p-6 relative">
-                      <div className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg">
-                        {category.name.charAt(0)}
-                      </div>
-                      <CardTitle className="text-xl mb-2 group-hover:text-blue-600 transition-colors">
-                        {category.name}
-                      </CardTitle>
-                      <CardDescription>{category.description}</CardDescription>
-                    </CardContent>
+                    <div className="p-4">
+                      <h3 className="text-xl font-bold mb-2">{category.name}</h3>
+                      <p className="text-gray-500 text-sm">{category.description}</p>
+                    </div>
                   </Card>
                 </Link>
               </CarouselItem>
@@ -184,7 +180,7 @@ const Home = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Card className="h-full transition-all hover:shadow-md group border-0 shadow-sm overflow-hidden">
+                <Card className="h-full transition-all hover:shadow-md group border shadow-sm overflow-hidden">
                   <div className="aspect-[16/9] w-full overflow-hidden">
                     <img
                       src={post.coverImage || "/placeholder.svg"}
@@ -234,7 +230,7 @@ const Home = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
               >
-                <Card className="h-full transition-all hover:shadow-md overflow-hidden group border-0 shadow-sm">
+                <Card className="h-full transition-all hover:shadow-md overflow-hidden group border shadow-sm">
                   <div className="relative aspect-[4/3] w-full overflow-hidden">
                     <div className="absolute top-2 right-2 z-20 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
                       New
@@ -246,29 +242,27 @@ const Home = () => {
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
-                  <CardHeader className="p-4">
+                  <div className="p-4">
                     <div className="text-sm text-gray-500 mb-2 flex items-center">
                       <Clock className="h-3 w-3 mr-1" />
                       {formatDate(post.date)}
                     </div>
-                    <CardTitle className="text-lg line-clamp-2 group-hover:text-blue-600 transition-colors">
+                    <h3 className="text-lg font-bold mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
                       {post.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4 pt-0">
+                    </h3>
                     <p className="text-gray-500 line-clamp-2">{post.excerpt}</p>
-                  </CardContent>
-                  <CardFooter className="p-4 pt-0 flex justify-between">
-                    <div className="flex items-center text-sm text-gray-500">
-                      <img
-                        src={post.author.avatar || "/placeholder.svg"}
-                        alt={post.author.name}
-                        className="h-6 w-6 rounded-full mr-2"
-                      />
-                      {post.author.name}
+                    <div className="mt-4 flex justify-between items-center">
+                      <div className="flex items-center text-sm text-gray-500">
+                        <img
+                          src={post.author.avatar || "/placeholder.svg"}
+                          alt={post.author.name}
+                          className="h-6 w-6 rounded-full mr-2"
+                        />
+                        {post.author.name}
+                      </div>
+                      <div className="text-sm text-gray-500">{post.views} views</div>
                     </div>
-                    <div className="text-sm text-gray-500">{post.views} views</div>
-                  </CardFooter>
+                  </div>
                 </Card>
               </motion.div>
             </Link>

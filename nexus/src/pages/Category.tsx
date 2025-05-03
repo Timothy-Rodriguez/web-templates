@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Search } from "lucide-react"
 import { categories, getPostsByCategory } from "../data/mockData"
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "../components/ui/card"
+import { Card } from "../components/ui/card"
 import { Input } from "../components/ui/input"
 
 const Category = () => {
@@ -61,7 +61,7 @@ const Category = () => {
         {filteredCategories.length > 0 ? (
           filteredCategories.map(({ category, count }) => (
             <Link to={`/category/${category.slug}`} key={category.id}>
-              <Card className="h-full transition-all hover:shadow-md overflow-hidden border-0 shadow-sm">
+              <Card className="h-full transition-all hover:shadow-md overflow-hidden border shadow-sm">
                 <div className="aspect-video w-full overflow-hidden">
                   <img
                     src={category.image || "/placeholder.svg"}
@@ -69,18 +69,16 @@ const Category = () => {
                     className="h-full w-full object-cover transition-transform hover:scale-105"
                   />
                 </div>
-                <CardHeader>
-                  <CardTitle className="flex justify-between items-center">
+                <div className="p-4">
+                  <h3 className="text-xl font-bold mb-2 flex justify-between items-center">
                     <span>{category.name}</span>
                     <span className="inline-flex items-center justify-center rounded-full bg-blue-100 px-2.5 py-0.5 text-blue-700 text-sm">
                       {count} articles
                     </span>
-                  </CardTitle>
-                  <CardDescription>{category.description}</CardDescription>
-                </CardHeader>
-                <CardFooter>
-                  <div className="text-sm text-blue-600">View articles →</div>
-                </CardFooter>
+                  </h3>
+                  <p className="text-gray-500 text-sm">{category.description}</p>
+                  <div className="mt-4 text-sm text-blue-600">View articles →</div>
+                </div>
               </Card>
             </Link>
           ))
