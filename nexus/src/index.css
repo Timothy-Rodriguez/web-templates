@@ -182,3 +182,67 @@
   --brand: hsl(213.3 93.9% 67.8%);
   --highlight: hsl(48 96% 53%);
 }
+
+/* For quill */
+.editor-wrapper.visible {
+  display: block;
+}
+
+.editor-wrapper.hidden {
+  display: none;
+}
+
+.quill-editor {
+  min-height: 200px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.quill-editor .ql-container {
+  font-size: 16px;
+}
+
+.quill-editor .ql-editor {
+  min-height: 150px;
+}
+
+.quill-output {
+  min-height: 100px;
+  padding: 16px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.quill-output h1 {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin: 0.67em 0;
+}
+
+.quill-output h2 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0.83em 0;
+}
+
+.quill-output h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 1em 0;
+}
+
+.quill-output p {
+  margin: 1em 0;
+}
+
+.quill-output ul,
+.quill-output ol {
+  margin: 1em 0;
+  padding-left: 2em;
+}
+
+.quill-output a {
+  color: #007bff;
+  text-decoration: underline;
+}
