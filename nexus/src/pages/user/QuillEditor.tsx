@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import Quill from "quill";
-import "quill/dist/quill.snow.css"; // Import Quill's snow theme CSS
+import "quill/dist/quill.snow.css";
 
 interface QuillEditorProps {
   value: string;
@@ -13,22 +13,24 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange }) => {
 
   useEffect(() => {
     if (quillRef.current && !editorRef.current) {
-      // Initialize Quill
       editorRef.current = new Quill(quillRef.current, {
-        theme: "snow", // Use the snow theme
+        theme: "snow",
         modules: {
           toolbar: [
-            [{ header: [1, 2, 3, false] }],
-            ["bold", "italic", "underline", "strike"],
-            ["link", "image"],
-            [{ list: "ordered" }, { list: "bullet" }],
+            [{ header: [1, 2, 3, false] }], // Headers
+            [{ font: [] }], // Font family
+            [{ size: ["small", false, "large", "huge"] }], // Font size
+            ["bold", "italic", "underline", "strike"], // Basic formatting
+            [{ color: [] }, { background: [] }], // Text color and background color
+            [{ align: [] }], // Text alignment
+            ["link", "image"], // Link and image
+            [{ list: "ordered" }, { list: "bullet" }], // Lists
             ["clean"], // Remove formatting
           ],
         },
         placeholder: "Write something amazing...",
       });
 
-      // Update parent component on content change
       editorRef.current.on("text-change", () => {
         const content = editorRef.current?.root.innerHTML || "";
         onChange(content);
@@ -36,7 +38,6 @@ const QuillEditor: React.FC<QuillEditorProps> = ({ value, onChange }) => {
     }
   }, [onChange]);
 
-  // Update editor content when `value` prop changes
   useEffect(() => {
     if (editorRef.current && value !== editorRef.current.root.innerHTML) {
       editorRef.current.root.innerHTML = value;
