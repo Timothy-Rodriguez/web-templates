@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Search } from "lucide-react"
 import { categories, getPostsByCategory } from "../data/mockData"
-import { Card } from "../components/ui/card"
+import { CardImage } from "../components/ui/card"
 import { Input } from "../components/ui/input"
 
 const Category = () => {
@@ -61,7 +61,7 @@ const Category = () => {
         {filteredCategories.length > 0 ? (
           filteredCategories.map(({ category, count }) => (
             <Link to={`/category/${category.slug}`} key={category.id}>
-              <Card className="h-full transition-all hover:shadow-md overflow-hidden border shadow-sm">
+              <CardImage className="h-full transition-all hover:shadow-md overflow-hidden border shadow-sm">
                 <div className="aspect-video w-full overflow-hidden">
                   <img
                     src={category.image || "/placeholder.svg"}
@@ -79,7 +79,7 @@ const Category = () => {
                   <p className="text-gray-500 text-sm">{category.description}</p>
                   <div className="mt-4 text-sm text-blue-600">View articles →</div>
                 </div>
-              </Card>
+              </CardImage>
             </Link>
           ))
         ) : (

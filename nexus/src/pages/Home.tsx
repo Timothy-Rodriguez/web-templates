@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { ArrowRight, Clock, Sparkles, ChevronRight, ChevronLeft } from 'lucide-react'
 import { Button } from "../components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../components/ui/card"
+import { CardImage, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../components/ui/card"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../components/ui/carousel"
 import { categories, getTrendingPosts, getRecentPosts, getNewPosts,  type BlogPost } from "../data/mockData"
 // import { motion  getRecentPosts, getNewPosts, type BlogPost } from "../data/mockData"
@@ -144,7 +144,7 @@ const Home = () => {
             {categories.map((category) => (
               <CarouselItem key={category.id} className="md:basis-1/2 lg:basis-1/3">
                 <Link to={`/category/${category.slug}`}>
-                  <Card className="h-full transition-all hover:shadow-lg overflow-hidden group border shadow-sm">
+                  <CardImage className="h-full transition-all hover:shadow-lg overflow-hidden group border shadow-sm">
                     <div className="aspect-video w-full overflow-hidden">
                       <img
                         src={category.image || "/placeholder.svg"}
@@ -156,7 +156,7 @@ const Home = () => {
                       <h3 className="text-xl font-bold mb-2">{category.name}</h3>
                       <p className="text-gray-500 text-sm">{category.description}</p>
                     </div>
-                  </Card>
+                  </CardImage>
                 </Link>
               </CarouselItem>
             ))}
@@ -180,7 +180,7 @@ const Home = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Card className="h-full transition-all hover:shadow-md group border shadow-sm overflow-hidden">
+                <CardImage className="h-full transition-all hover:shadow-md group border shadow-sm overflow-hidden">
                   <div className="aspect-[16/9] w-full overflow-hidden">
                     <img
                       src={post.coverImage || "/placeholder.svg"}
@@ -209,7 +209,7 @@ const Home = () => {
                       <div className="text-sm text-gray-500">{post.views} views</div>
                     </div>
                   </div>
-                </Card>
+                </CardImage>
               </motion.div>
             </Link>
           ))}
@@ -230,7 +230,7 @@ const Home = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
               >
-                <Card className="h-full transition-all hover:shadow-md overflow-hidden group border shadow-sm">
+                <CardImage className="h-full transition-all hover:shadow-md overflow-hidden group border shadow-sm">
                   <div className="relative aspect-[4/3] w-full overflow-hidden">
                     <div className="absolute top-2 right-2 z-20 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
                       New
@@ -263,7 +263,7 @@ const Home = () => {
                       <div className="text-sm text-gray-500">{post.views} views</div>
                     </div>
                   </div>
-                </Card>
+                </CardImage>
               </motion.div>
             </Link>
           ))}
