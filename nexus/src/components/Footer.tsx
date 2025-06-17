@@ -53,11 +53,16 @@ const Footer = () => {
             <div>
               <Link to="/" className="flex items-center space-x-2 mb-4">
                 <div className="relative">
-                  <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 opacity-75 blur"></div>
-                  <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-white">
-                    <span className="text-xl font-bold text-blue-600">N</span>
-                  </div>
-                </div>
+              {/* Animated circles */}
+              <div className="absolute inset-0 animate-ping rounded-full bg-gradient-to-r from-blue-400 to-purple-400 opacity-20"></div>
+              <div className="absolute inset-0 animate-pulse rounded-full bg-gradient-to-r from-blue-400 to-purple-400 opacity-30"></div>
+
+              {/* Main logo circle */}
+              <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg">
+                <div className="h-6 w-6 rounded-full bg-white opacity-90 animate-pulse"></div>
+                <div className="absolute h-3 w-3 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 animate-spin"></div>
+              </div>
+            </div>
                 <div className="text-2xl font-bold text-white">Nexus</div>
               </Link>
               <p className="text-gray-300 mb-6">

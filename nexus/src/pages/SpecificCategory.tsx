@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom"
 import { Search } from "lucide-react"
 import { getCategoryBySlug, getPostsByCategory, type BlogPost } from "../data/mockData"
 import { Button } from "../components/ui/button"
-import { Card } from "../components/ui/card"
+import { CardImage } from "../components/ui/card"
 import { Input } from "../components/ui/input"
 import {
   Pagination,
@@ -100,7 +100,7 @@ const SpecificCategory = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 w-[85%] mx-auto">
             {currentPosts.map((post) => (
               <Link to={`/blog/${post.slug}`} key={post.id}>
-                <Card className="h-full transition-all hover:shadow-md border shadow-sm overflow-hidden">
+                <CardImage className="h-full transition-all hover:shadow-md border shadow-sm overflow-hidden">
                   <div className="aspect-video w-full overflow-hidden">
                     <img
                       src={post.coverImage || "/placeholder.svg"}
@@ -124,7 +124,7 @@ const SpecificCategory = () => {
                       <div className="text-sm text-gray-500">{post.views} views</div>
                     </div>
                   </div>
-                </Card>
+                </CardImage>
               </Link>
             ))}
           </div>
